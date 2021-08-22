@@ -11,8 +11,8 @@ test "gets tokens" {
 
     for (tokens) |expected_token| {
         var token = token_iter.next().?;
-
-        std.debug.print("Expected '{s}', got '{s}'\n", .{ token, expected_token });
+        var index = token_iter.index;
+        std.debug.print("Expected '{s}', got '{s}' at index {d} with character {c}\n", .{ token, expected_token, index, input_string[index - 1] });
         try expect(mem.eql(u8, token, expected_token));
     }
 }
